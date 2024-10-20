@@ -3,6 +3,7 @@ import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 import { Button } from "./components/Button";
+import { PageTitle } from "./components/PageTitle";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -19,7 +20,7 @@ function App() {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
-      <h1>PR-Agent Sample</h1>
+      <PageTitle title="PR-Agent Sample" />
       <div className="card">
         <Button label="increment" onClick={increment} />
         <Button label="decrement" onClick={decrement} />
