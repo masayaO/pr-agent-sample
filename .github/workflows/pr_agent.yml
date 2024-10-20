@@ -24,7 +24,7 @@ jobs:
             local file_path=$2
             local prompt=$(cat "$file_path")
             echo "${var_name}<<EOF" >> $GITHUB_ENV
-            echo "${prompt}" >> $GITHUB_ENV
+            echo "prompt" >> $GITHUB_ENV
             echo "EOF" >> $GITHUB_ENV
           }
           set_env_var_from_file "REVIEW_PROMPT" "./wiki/pr-agent-review-prompt.md"
@@ -41,7 +41,7 @@ jobs:
             ${{ env.REVIEW_PROMPT }}
           # PR_DESCRIPTION settings (/describe)
           PR_DESCRIPTION.extra_instructions: |
-            ${{env.DESCRIBE_PROMPT}}
+            ${{ env.DESCRIBE_PROMPT }}
           # PR_CODE_SUGGESTIONS settings (/improve)
           PR_CODE_SUGGESTIONS.extra_instructions: |
-            ${{env.IMPROVE_PROMPT}}
+            ${{ env.IMPROVE_PROMPT }}
