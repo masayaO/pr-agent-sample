@@ -1,6 +1,8 @@
+import React from "react";
+
 type Props = {
   label: string;
-  onClick: () => void;
+  onClick: React.MouseEventHandler<HTMLButtonElement>;
 };
 
 export const Button = ({ label, onClick }: Props) => {
