@@ -20,7 +20,7 @@ jobs:
         run: ls -la ./wiki/
       - name: Check if prompt files exist
         run: |
-          for file in pr-agent-review-prompt.md pr-agent-describe-prompt.md pr-agent-improve-prompt.md; do
+          for file in pr-agent-review-prompt.md pr_agent_describe_prompt.md pr-agent-improve-prompt.md; do
             if [ -f "./wiki/$file" ]; then
               echo "$file exists."
             else
@@ -39,7 +39,7 @@ jobs:
             echo "EOF" >> $GITHUB_ENV
           }
           set_env_var_from_file "REVIEW_PROMPT" "./wiki/pr-agent-review-prompt.md"
-          set_env_var_from_file "DESCRIBE_PROMPT" "./wiki/pr-agent-describe-prompt.md"
+          set_env_var_from_file "DESCRIBE_PROMPT" "./wiki/pr_agent_describe_prompt.md"
           set_env_var_from_file "IMPROVE_PROMPT" "./wiki/pr-agent-improve-prompt.md"
       - name: Use Review Prompt
         run: |
