@@ -16,17 +16,6 @@ jobs:
         with:
           repository: ${{ github.repository }}.wiki
           path: wiki
-      - name: List files in wiki directory
-        run: ls -la ./wiki/
-      - name: Check if prompt files exist
-        run: |
-          for file in pr-agent-review-prompt.md pr_agent_describe_prompt.md pr-agent-improve-prompt.md; do
-            if [ -f "./wiki/$file" ]; then
-              echo "$file exists."
-            else
-              echo "Error: $file does not exist in ./wiki/."
-            fi
-          done
       - name: Set up Wiki Info
         id: wiki_info
         run: |
@@ -38,21 +27,9 @@ jobs:
             echo "${prompt}" >> $GITHUB_ENV
             echo "EOF" >> $GITHUB_ENV
           }
-          set_env_var_from_file "REVIEW_PROMPT" "./wiki/pr-agent-review-prompt.md"
+          set_env_var_from_file "REVIEW_PROMPT" "./wiki/pr_agent_review_prompt.md"
           set_env_var_from_file "DESCRIBE_PROMPT" "./wiki/pr_agent_describe_prompt.md"
-          set_env_var_from_file "IMPROVE_PROMPT" "./wiki/pr-agent-improve-prompt.md"
-      - name: Use Review Prompt
-        run: |
-          echo "Review Prompt Content:"
-          echo "${REVIEW_PROMPT}"
-      - name: Use Describe Prompt
-        run: |
-          echo "Describe Prompt Content:"
-          echo "${DESCRIBE_PROMPT}"
-      - name: Use Improve Prompt
-        run: |
-          echo "Improve Prompt Content:"
-          echo "${IMPROVE_PROMPT}"
+          set_env_var_from_file "IMPROVE_PROMPT" "./wiki/pr_agent_improve_prompt.md"
       - name: PR Agent action step
         id: pragent
         uses: Codium-ai/pr-agent@main
