@@ -7,21 +7,10 @@ ignore_pr_labels = ['dependencies']
 [pr_description]
 publish_labels = false
 generate_ai_title = true
-extra_instructions = """\
-Emphasize the following:
-- Please use Japanese in descriptions.
-"""
 
 [pr_reviewer]
 enable_review_labels_effort = false
 require_can_be_split_review = true
-extra_instructions = """\
-Emphasize the following:
-- Please use Japanese in descriptions.
-"""
 
 [pr_code_suggestions]
-extra_instructions = """\
-Emphasize the following:
-- Please use Japanese in descriptions.
-"""
+commitable_code_suggestions = true

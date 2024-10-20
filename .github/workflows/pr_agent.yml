@@ -12,9 +12,39 @@ jobs:
       contents: write
     name: Run pr agent on every pull request, respond to user comments
     steps:
+      - name: Checkout the Wiki repository
+        uses: actions/checkout@v4
+        with:
+          ref: main # 任意のブランチを指定（GitHub の default は master）
+          repository: { repo }/{path}.wiki
+          path: wiki
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Set up Wiki Info
+        id: wiki_info
+        run: |
+          set_env_var_from_file() {
+            local var_name=$1
+            local file_path=$2
+            local prompt=$(cat "$file_path")
+            echo "${var_name}<<EOF" >> $GITHUB_ENV
+            echo "prompt" >> $GITHUB_ENV
+            echo "EOF" >> $GITHUB_ENV
+          }
+          set_env_var_from_file "REVIEW_PROMPT" "./wiki/pr-agent-review-prompt.md"
+          set_env_var_from_file "DESCRIBE_PROMPT" "./wiki/pr-agent-describe-prompt.md"
+          set_env_var_from_file "IMPROVE_PROMPT" "./wiki/pr-agent-improve-prompt.md"
       - name: PR Agent action step
         id: pragent
         uses: Codium-ai/pr-agent@main
         env:
           OPENAI_KEY: ${{ secrets.OPENAI_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # PR_AGENT settings (/review)
+          PR_REVIEWER.extra_instructions: |
+            ${{env.REVIEW_PROMPT}}
+          # PR_DESCRIPTION settings (/describe)
+          PR_DESCRIPTION.extra_instructions: |
+            ${{env.DESCRIBE_PROMPT}}
+          # PR_CODE_SUGGESTIONS settings (/improve)
+          PR_CODE_SUGGESTIONS.extra_instructions: |
+            ${{env.IMPROVE_PROMPT}}
