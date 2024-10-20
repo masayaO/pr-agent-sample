@@ -6,6 +6,7 @@ import "./App.css";
 function App() {
   const [count, setCount] = useState(0);
   const increment = () => setCount((count) => count + 1);
+  const decrement = () => setCount((count) => count - 1);
 
   return (
     <>
@@ -19,7 +20,9 @@ function App() {
       </div>
       <h1>Vite + React</h1>
       <div className="card">
-        <button onClick={increment}>count is {count}</button>
+        <button onClick={increment}>increment</button>
+        <button onClick={decrement}>decrement</button>
+        <p>count: {count}</p>
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>
