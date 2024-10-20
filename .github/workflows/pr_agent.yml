@@ -14,9 +14,19 @@ jobs:
       - name: Checkout the Wiki repository
         uses: actions/checkout@v4
         with:
-          ref: main
           repository: ${{ github.repository }}.wiki
           path: wiki
+      - name: List files in wiki directory
+        run: ls -la ./wiki/
+      - name: Check if prompt files exist
+        run: |
+          for file in pr-agent-review-prompt.md pr-agent-describe-prompt.md pr-agent-improve-prompt.md; do
+            if [ -f "./wiki/$file" ]; then
+              echo "$file exists."
+            else
+              echo "Error: $file does not exist in ./wiki/."
+            fi
+          done
       - name: Set up Wiki Info
         id: wiki_info
         run: |
