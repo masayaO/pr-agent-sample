@@ -17,7 +17,7 @@ jobs:
           ref: main
           repository: ${{ github.repository }}.wiki
           path: wiki
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PR_AGENT_PROMPT }}
       - name: Set up Wiki Info
         id: wiki_info
         run: |
