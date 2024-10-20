@@ -14,10 +14,10 @@ jobs:
       - name: Checkout the Wiki repository
         uses: actions/checkout@v4
         with:
-          ref: main # 任意のブランチを指定（GitHub の default は master）
+          ref: main
           repository: masayaO/pr-agent-sample.wiki
           path: wiki
-          token: ${{ secrets.PR_AGENT_PROMPT }}
+          token: ${{ secrets.GITHUB_TOKEN }}
       - name: Set up Wiki Info
         id: wiki_info
         run: |
@@ -26,7 +26,7 @@ jobs:
             local file_path=$2
             local prompt=$(cat "$file_path")
             echo "${var_name}<<EOF" >> $GITHUB_ENV
-            echo "prompt" >> $GITHUB_ENV
+            echo "${prompt}" >> $GITHUB_ENV
             echo "EOF" >> $GITHUB_ENV
           }
           set_env_var_from_file "REVIEW_PROMPT" "./wiki/pr-agent-review-prompt.md"
@@ -40,7 +40,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           # PR_AGENT settings (/review)
           PR_REVIEWER.extra_instructions: |
-            ${{env.REVIEW_PROMPT}}
+            ${{ env.REVIEW_PROMPT }}
           # PR_DESCRIPTION settings (/describe)
           PR_DESCRIPTION.extra_instructions: |
             ${{env.DESCRIBE_PROMPT}}
