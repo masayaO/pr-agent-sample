@@ -37,6 +37,13 @@
   padding: 2em;
 }
 
+.button-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
 .read-the-docs {
   color: #888;
 }
