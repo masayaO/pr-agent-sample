@@ -3,8 +3,8 @@
 
 [config]
 ignore_pr_labels = ['dependencies']
-model="o1-preview"
-model_turbo="o1-preview"
+model="gpt-4o-2024-08-06"
+model_turbo="gpt-4o-2024-08-06"
 fallback_models=["gpt-4o-2024-08-06"]
 
 [pr_description]
