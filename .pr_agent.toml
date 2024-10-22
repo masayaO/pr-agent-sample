@@ -2,8 +2,7 @@
 # https://github.com/Codium-ai/pr-agent/blob/main/pr_agent/settings/configuration.toml
 
 [config]
-ignore_pr_labels = ['dependencies']
-model="gpt-4o-mini"
+model = "gpt-4o-mini"
 
 [pr_description]
 publish_labels = false
