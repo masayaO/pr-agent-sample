@@ -3,9 +3,7 @@
 
 [config]
 ignore_pr_labels = ['dependencies']
-model="gpt-4o-2024-08-06"
-model_turbo="gpt-4o-2024-08-06"
-fallback_models=["gpt-4o-2024-08-06"]
+model="gpt-4o-mini"
 
 [pr_description]
 publish_labels = false
